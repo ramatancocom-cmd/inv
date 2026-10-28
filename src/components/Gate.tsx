@@ -94,25 +94,25 @@ export default function Gate({ children }: { children: React.ReactNode }) {
             <FlowerSpray corner="br" size="lg" />
 
             <motion.p
-              className="eyebrow relative mb-8 text-center text-wine"
+              className="eyebrow relative mb-5 text-center text-wine sm:mb-6"
               animate={{ opacity: opening ? 0 : 1 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               You are invited
             </motion.p>
 
             {/* Envelope */}
             <div
-              className="relative w-[min(88vw,540px)] aspect-[3/2]"
+              className="relative w-[min(88vw,470px,62vh)] aspect-[3/2]"
               style={{ perspective: 1400 }}
             >
               <motion.div
                 className="absolute inset-0"
-                initial={{ y: reduce ? 0 : 30, opacity: 0 }}
+                initial={{ y: reduce ? 0 : 20, opacity: 0 }}
                 animate={{
-                  y: opening && !reduce ? 70 : 0,
+                  y: opening && !reduce ? 92 : 0,
                   opacity: 1,
-                  scale: opening && !reduce ? 1.04 : 1,
+                  scale: 1,
                 }}
                 transition={{ duration: 1.1 * d + 0.01, ease: [0.22, 1, 0.36, 1] }}
                 style={{ transformStyle: "preserve-3d" }}
@@ -134,12 +134,12 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   className="absolute left-[6%] right-[6%] top-[6%] bottom-[6%] flex flex-col items-center justify-center border border-rose bg-ivory px-4 text-center text-wine shadow-xl"
                   style={{ zIndex: 1 }}
                   animate={{
-                    y: opening && !reduce ? "-46%" : 0,
-                    scale: opening && !reduce ? 1.08 : 1,
+                    y: opening && !reduce ? "-38%" : 0,
+                    scale: 1,
                   }}
                   transition={{
-                    delay: opening && !reduce ? 1.15 : 0,
-                    duration: 1.5 * d + 0.01,
+                    delay: opening && !reduce ? 1.05 : 0,
+                    duration: 1.4 * d + 0.01,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
@@ -201,6 +201,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-wine"
                   style={{
                     zIndex: 5,
+                    pointerEvents: opening ? "none" : "auto",
                     background:
                       "radial-gradient(circle at 35% 30%, #F5E296 0%, #D4AF37 50%, #8A6416 100%)",
                     boxShadow: "0 6px 16px rgba(90,64,20,.4), inset 0 0 0 3px rgba(255,255,255,.25), inset 0 -4px 8px rgba(90,60,10,.35)",
@@ -227,9 +228,10 @@ export default function Gate({ children }: { children: React.ReactNode }) {
             </div>
 
             <motion.div
-              className="relative mt-16 flex flex-col items-center gap-5 sm:mt-20"
+              className="relative mt-7 flex flex-col items-center gap-4 sm:mt-8"
               animate={{ opacity: opening ? 0 : 1 }}
-              transition={{ duration: 0.4 }}
+              style={{ pointerEvents: opening ? "none" : "auto" }}
+              transition={{ duration: 0.35 }}
             >
               <button type="button" onClick={open} disabled={opening} className="btn-wine">
                 Open Invitation

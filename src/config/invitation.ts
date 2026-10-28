@@ -67,7 +67,7 @@ export const invitation = {
   },
 
   features: {
-    scene3D: true,
+    scene3D: false,
     skipButton: true,
     // RSVP posts to the built-in /api/rsvp route, which appends each reply to
     // data/rsvps.txt and emails a Gmail notification (see .env.example).

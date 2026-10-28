@@ -1,5 +1,4 @@
 import Gate from "@/components/Gate";
-import SceneHost from "@/components/scene/SceneHost";
 import Countdown from "@/components/Countdown";
 import CalendarButton from "@/components/CalendarButton";
 import Monogram from "@/components/Monogram";
@@ -28,52 +27,40 @@ export default function Page() {
         {/* HERO */}
         <section
           id="top"
-          className="relative overflow-hidden bg-ivory text-wine"
+          className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ivory text-wine"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 55% at 70% 55%, rgba(212,175,55,0.16), transparent 70%), radial-gradient(ellipse 80% 60% at 20% 0%, rgba(245,237,224,0.95), transparent 70%)",
+              "radial-gradient(ellipse 65% 60% at 50% 50%, rgba(212,175,55,0.18), transparent 70%), radial-gradient(ellipse 80% 60% at 50% 20%, rgba(245,237,224,0.95), transparent 70%)",
           }}
         >
           <div className="lace pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-          <FlowerSpray corner="tl" size="sm" />
-          <FlowerSpray corner="br" size="sm" />
-          <div className="relative mx-auto grid min-h-[100svh] max-w-7xl items-center gap-0 px-6 pb-8 pt-28 sm:pt-20 lg:grid-cols-[1.02fr_1fr] lg:gap-6 lg:px-12 lg:py-10">
-            <div className="min-w-0 text-center lg:text-left">
-              <p className="eyebrow text-rose-deep">{copy.intro}</p>
-              <h1 className="mt-6 whitespace-nowrap font-script text-[clamp(3.4rem,13vw,6rem)] leading-[1.02] lg:text-[clamp(4rem,6.6vw,7.2rem)] text-wine">
-                <span className="foil block">
-                  {couple.first} &amp;
-                </span>
-                <span className="foil block">{couple.second}</span>
-              </h1>
-              <p className="mt-6 text-xl italic text-wine/85 sm:text-2xl">{copy.invite}</p>
-              <div className="rose-rule my-8 mx-auto w-40 lg:mx-0" aria-hidden />
-              <p className="text-2xl font-medium tracking-wide">{event.dateLabel}</p>
-              <p className="mt-1 text-lg text-wine/80">
-                {event.timeLabel} &middot; {venue.name}, {venue.area}
-              </p>
-              <div className="mt-10 flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
-                <a href="#details" className="btn-rose">
-                  View Celebration Details
-                </a>
-                {invitation.features.rsvp.enabled && (
-                  <a href="#rsvp" className="btn-ghost">
-                    Kindly Reply
-                  </a>
-                )}
-              </div>
+          <FlowerSpray corner="tl" size="md" />
+          <FlowerSpray corner="br" size="md" />
+          <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-6 py-24 text-center sm:py-28">
+            <div className="mb-6 flex justify-center">
+              <Monogram size={96} />
             </div>
-
-            <div className="relative h-[68svh] min-h-[420px] w-full lg:h-[86svh]">
-              {/* gold arched window framing the 3D scene */}
-              <div className="absolute inset-x-1 inset-y-3 rounded-b-md rounded-t-[999px] border border-rose p-1.5 shadow-[0_30px_60px_-30px_rgba(90,64,20,0.5)] sm:inset-x-6">
-                <div
-                  className="relative h-full w-full overflow-hidden rounded-b-sm rounded-t-[999px] border border-rose/60"
-                  style={{ background: "linear-gradient(180deg, #2c2433 0%, #6b4a52 45%, #c98a52 80%, #e9b968 100%)" }}
-                >
-                  <SceneHost />
-                </div>
-              </div>
+            <p className="eyebrow text-rose-deep">{copy.intro}</p>
+            <h1 className="mt-6 font-script text-[clamp(3.6rem,12vw,6.5rem)] leading-[1.08] text-wine">
+              <span className="foil inline-block">{couple.first}</span>
+              <span className="foil mx-3 inline-block font-serif text-3xl font-normal italic sm:text-4xl text-rose-deep">&amp;</span>
+              <span className="foil inline-block">{couple.second}</span>
+            </h1>
+            <p className="mt-6 text-xl italic text-wine/85 sm:text-2xl">{copy.invite}</p>
+            <div className="rose-rule my-8 mx-auto w-40" aria-hidden />
+            <p className="text-2xl font-medium tracking-wide sm:text-3xl">{event.dateLabel}</p>
+            <p className="mt-2 text-lg text-wine/80 sm:text-xl">
+              {event.timeLabel} &middot; {venue.name}, {venue.area}
+            </p>
+            <div className="mt-10 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row">
+              <a href="#details" className="btn-rose">
+                View Celebration Details
+              </a>
+              {invitation.features.rsvp.enabled && (
+                <a href="#rsvp" className="btn-ghost">
+                  Kindly Reply
+                </a>
+              )}
             </div>
           </div>
         </section>
@@ -130,12 +117,14 @@ export default function Page() {
           </div>
         </section>
 
+        <Rsvp />
+
         {/* LOCATION */}
-        <section id="location" className="bg-ivory px-6 py-28" aria-labelledby="location-title">
+        <section id="location" className="bg-blush px-6 py-28" aria-labelledby="location-title">
           <Reveal className="mx-auto max-w-4xl">
             <div className="relative border border-rose/70 p-2">
               <div
-                className="relative overflow-hidden bg-blush px-8 py-16 text-center text-wine sm:px-16 sm:py-20"
+                className="relative overflow-hidden bg-ivory px-8 py-16 text-center text-wine sm:px-16 sm:py-20"
                 style={{
                   backgroundImage:
                     "radial-gradient(ellipse 70% 80% at 50% 0%, rgba(212,175,55,0.18), transparent 70%)",
@@ -168,7 +157,7 @@ export default function Page() {
         </section>
 
         {/* CALENDAR */}
-        <section className="bg-blush px-6 py-24 text-center" aria-labelledby="calendar-title">
+        <section className="bg-ivory px-6 py-24 text-center" aria-labelledby="calendar-title">
           <Reveal className="mx-auto max-w-2xl">
             <p className="eyebrow text-rose-deep">Save the Date</p>
             <h2 id="calendar-title" className="mt-4 text-3xl font-medium sm:text-5xl">
@@ -183,7 +172,6 @@ export default function Page() {
           </Reveal>
         </section>
 
-        <Rsvp />
         <WishesWall />
 
         {/* CLOSING */}
