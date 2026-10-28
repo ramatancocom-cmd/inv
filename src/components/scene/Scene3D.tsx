@@ -11,7 +11,7 @@ import FramedPhoto from "./FramedPhoto";
 import Ambience from "./Ambience";
 import { Suspense } from "react";
 import Sky, { nightAmount } from "./Sky";
-import { resetSceneTime, sceneTime } from "./time";
+import { invitationOpened, resetSceneTime, sceneTime } from "./time";
 
 const { palette } = invitation;
 
@@ -152,7 +152,7 @@ function Rig({
   pointerParallax: boolean;
   reduceMotion: boolean;
 }) {
-  const look = useMemo(() => new THREE.Vector3(0, 2.0, 0), []);
+  const look = useMemo(() => new THREE.Vector3(0, 2.35, 0), []);
   useFrame((state) => {
     const t = sceneTime();
     const reveal = reduceMotion ? 1 : smooth(t / 5);
@@ -165,7 +165,7 @@ function Rig({
     // Slow cinematic drift once the reveal settles.
     const drift = reduceMotion ? 0 : reveal;
     const tx = px * 0.9 + Math.sin(t * 0.11) * 0.9 * drift;
-    const ty = 2.2 + py * 0.25 + (1 - reveal) * 0.8 + Math.sin(t * 0.07) * 0.18 * drift;
+    const ty = 2.5 + py * 0.25 + (1 - reveal) * 0.8 + Math.sin(t * 0.07) * 0.18 * drift;
     const tz = fit + 0.6 + (1 - reveal) * 3;
     cam.position.x += (tx - cam.position.x) * 0.05;
     cam.position.y += (ty - cam.position.y) * 0.05;
@@ -182,7 +182,7 @@ function DayNightLights({ high, reduceMotion }: { high: boolean; reduceMotion: b
   const fill = useRef<THREE.PointLight>(null);
   const moon = useRef<THREE.PointLight>(null);
   const warm = useMemo(() => new THREE.Color("#ffd2a0"), []);
-  const cool = useMemo(() => new THREE.Color("#f3c6c9"), []);
+  const cool = useMemo(() => new THREE.Color("#d6d8f2"), []);
   useFrame((state) => {
     const n = nightAmount(sceneTime(), reduceMotion);
     if (hemi.current) hemi.current.intensity = THREE.MathUtils.lerp(0.75, 0.42, n);
@@ -195,7 +195,7 @@ function DayNightLights({ high, reduceMotion }: { high: boolean; reduceMotion: b
   });
   return (
     <>
-      <hemisphereLight ref={hemi} args={["#fff1d6", "#6A1222", 0.75]} />
+      <hemisphereLight ref={hemi} args={["#fff1d6", "#5a4630", 0.75]} />
       <directionalLight
         ref={sun}
         position={[4, 6, 5]}
@@ -209,7 +209,7 @@ function DayNightLights({ high, reduceMotion }: { high: boolean; reduceMotion: b
         shadow-camera-bottom={-1}
         shadow-bias={-0.0004}
       />
-      <pointLight ref={fill} position={[-4, 2.5, 3]} intensity={14} color="#e9a3a8" distance={12} />
+      <pointLight ref={fill} position={[-4, 2.5, 3]} intensity={14} color="#f0c890" distance={12} />
       <pointLight position={[0, 3.5, 2.5]} intensity={9} color="#ffcf8a" distance={10} />
       <pointLight ref={moon} position={[-3.5, 5.5, 1]} intensity={0} color="#e8dcff" distance={14} />
     </>
@@ -230,9 +230,9 @@ export default function Scene3D({
   onInteract?: () => void;
 }) {
   const high = quality === "high";
-  // Start the timeline (entrance, dusk) once, when the scene first mounts.
+  // If the scene loads after the envelope was opened, start its timeline now.
   useState(() => {
-    resetSceneTime();
+    if (invitationOpened()) resetSceneTime();
     return 0;
   });
   const ix = useRef<Interaction>({
@@ -296,12 +296,11 @@ export default function Scene3D({
           gl.outputColorSpace = THREE.SRGBColorSpace;
         }}
       >
-        <fog attach="fog" args={[palette.wine, 15, 30]} />
         <DayNightLights high={high} reduceMotion={reduceMotion} />
         {high && (
           <Environment resolution={128} frames={1}>
             <Lightformer form="rect" intensity={2.5} color="#ffe2b0" position={[3, 3, 5]} scale={[6, 4, 1]} />
-            <Lightformer form="rect" intensity={1.2} color="#f2b8b8" position={[-5, 2, 2]} scale={[4, 4, 1]} />
+            <Lightformer form="rect" intensity={1.2} color="#f5dca0" position={[-5, 2, 2]} scale={[4, 4, 1]} />
             <Lightformer form="ring" intensity={1.5} color="#ffffff" position={[0, 6, -3]} scale={4} />
           </Environment>
         )}

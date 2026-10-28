@@ -139,7 +139,7 @@ export default function Ambience({ quality, reduceMotion }: { quality: "high" | 
           size={high ? 2.4 : 2}
           speed={0.25}
           opacity={0.7}
-          color="#ffd9b8"
+          color="#ffe3a3"
         />
       )}
     </>

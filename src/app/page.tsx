@@ -28,31 +28,31 @@ export default function Page() {
         {/* HERO */}
         <section
           id="top"
-          className="relative overflow-hidden bg-wine text-ivory"
+          className="relative overflow-hidden bg-ivory text-wine"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 55% at 70% 55%, rgba(212,175,55,0.22), transparent 70%), radial-gradient(ellipse 80% 60% at 20% 0%, rgba(122,20,36,0.9), transparent 70%)",
+              "radial-gradient(ellipse 60% 55% at 70% 55%, rgba(212,175,55,0.16), transparent 70%), radial-gradient(ellipse 80% 60% at 20% 0%, rgba(245,237,224,0.95), transparent 70%)",
           }}
         >
           <div className="lace pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-          <FlowerSpray corner="tl" size="md" />
+          <FlowerSpray corner="tl" size="sm" />
           <FlowerSpray corner="br" size="sm" />
           <div className="relative mx-auto grid min-h-[100svh] max-w-7xl items-center gap-0 px-6 pb-8 pt-28 sm:pt-20 lg:grid-cols-[1.02fr_1fr] lg:gap-6 lg:px-12 lg:py-10">
             <div className="min-w-0 text-center lg:text-left">
-              <p className="eyebrow text-rose">{copy.intro}</p>
-              <h1 className="mt-6 whitespace-nowrap font-script text-[clamp(3.4rem,13vw,6rem)] leading-[1.02] lg:text-[clamp(4rem,6.6vw,7.2rem)] text-ivory">
+              <p className="eyebrow text-rose-deep">{copy.intro}</p>
+              <h1 className="mt-6 whitespace-nowrap font-script text-[clamp(3.4rem,13vw,6rem)] leading-[1.02] lg:text-[clamp(4rem,6.6vw,7.2rem)] text-wine">
                 <span className="foil block">
                   {couple.first} &amp;
                 </span>
                 <span className="foil block">{couple.second}</span>
               </h1>
-              <p className="mt-6 text-xl italic text-ivory/90 sm:text-2xl">{copy.invite}</p>
+              <p className="mt-6 text-xl italic text-wine/85 sm:text-2xl">{copy.invite}</p>
               <div className="rose-rule my-8 mx-auto w-40 lg:mx-0" aria-hidden />
               <p className="text-2xl font-medium tracking-wide">{event.dateLabel}</p>
-              <p className="mt-1 text-lg text-ivory/85">
+              <p className="mt-1 text-lg text-wine/80">
                 {event.timeLabel} &middot; {venue.name}, {venue.area}
               </p>
-              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+              <div className="mt-10 flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
                 <a href="#details" className="btn-rose">
                   View Celebration Details
                 </a>
@@ -64,8 +64,16 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="relative h-[68svh] min-h-[420px] w-full lg:h-[88svh]">
-              <SceneHost />
+            <div className="relative h-[68svh] min-h-[420px] w-full lg:h-[86svh]">
+              {/* gold arched window framing the 3D scene */}
+              <div className="absolute inset-x-1 inset-y-3 rounded-b-md rounded-t-[999px] border border-rose p-1.5 shadow-[0_30px_60px_-30px_rgba(90,64,20,0.5)] sm:inset-x-6">
+                <div
+                  className="relative h-full w-full overflow-hidden rounded-b-sm rounded-t-[999px] border border-rose/60"
+                  style={{ background: "linear-gradient(180deg, #2c2433 0%, #6b4a52 45%, #c98a52 80%, #e9b968 100%)" }}
+                >
+                  <SceneHost />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -73,16 +81,16 @@ export default function Page() {
         <PhotoStory />
 
         {/* COUNTDOWN */}
-        <section className="bg-wine px-6 py-24 text-ivory" aria-labelledby="countdown-title">
+        <section className="lace bg-ivory px-6 py-24 text-wine" aria-labelledby="countdown-title">
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <p id="countdown-title" className="eyebrow text-rose">
+              <p id="countdown-title" className="eyebrow text-rose-deep">
                 Until we celebrate
               </p>
               <div className="mt-10">
                 <Countdown />
               </div>
-              <p className="mt-10 text-base italic text-ivory/70">
+              <p className="mt-10 text-base italic text-wine/70">
                 Counting to {event.timeLabel}, {event.dayMonth}, {event.year} &mdash; {event.timeNote}
               </p>
             </Reveal>
@@ -127,21 +135,21 @@ export default function Page() {
           <Reveal className="mx-auto max-w-4xl">
             <div className="relative border border-rose/70 p-2">
               <div
-                className="relative overflow-hidden bg-wine px-8 py-16 text-center text-ivory sm:px-16 sm:py-20"
+                className="relative overflow-hidden bg-blush px-8 py-16 text-center text-wine sm:px-16 sm:py-20"
                 style={{
                   backgroundImage:
-                    "radial-gradient(ellipse 70% 80% at 50% 0%, rgba(212,175,55,0.25), transparent 70%)",
+                    "radial-gradient(ellipse 70% 80% at 50% 0%, rgba(212,175,55,0.18), transparent 70%)",
                 }}
               >
                 <div className="lace pointer-events-none absolute inset-0 opacity-70" aria-hidden />
                 <div className="relative">
-                  <p className="eyebrow text-rose">The Venue</p>
+                  <p className="eyebrow text-rose-deep">The Venue</p>
                   <h2 id="location-title" className="mt-5 text-5xl font-medium sm:text-6xl">
                     {venue.name}
                   </h2>
-                  <p className="mt-3 text-2xl italic text-ivory/90">{venue.area}</p>
+                  <p className="mt-3 text-2xl italic text-wine/85">{venue.area}</p>
                   <div className="rose-rule mx-auto my-8 w-32" aria-hidden />
-                  <p className="mx-auto max-w-md text-lg text-ivory/85">
+                  <p className="mx-auto max-w-md text-lg text-wine/80">
                     An {event.setting.toLowerCase()} beneath the evening sky.
                   </p>
                   <a
@@ -163,7 +171,7 @@ export default function Page() {
         <section className="bg-blush px-6 py-24 text-center" aria-labelledby="calendar-title">
           <Reveal className="mx-auto max-w-2xl">
             <p className="eyebrow text-rose-deep">Save the Date</p>
-            <h2 id="calendar-title" className="mt-4 text-4xl font-medium sm:text-5xl">
+            <h2 id="calendar-title" className="mt-4 text-3xl font-medium sm:text-5xl">
               {event.dateLabel}
             </h2>
             <p className="mt-3 text-xl italic text-wine/80">
@@ -180,7 +188,7 @@ export default function Page() {
 
         {/* CLOSING */}
         <section
-          className="relative overflow-hidden bg-wine px-6 py-28 text-center text-ivory"
+          className="relative overflow-hidden bg-blush px-6 py-28 text-center text-wine"
           aria-labelledby="closing-title"
         >
           <div className="lace pointer-events-none absolute inset-0 opacity-60" aria-hidden />

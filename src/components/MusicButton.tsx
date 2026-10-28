@@ -62,7 +62,7 @@ export default function MusicButton() {
       onClick={toggle}
       aria-pressed={playing}
       aria-label={playing ? "Pause music" : `Play music${title ? `: ${title}` : ""}`}
-      className="fixed bottom-5 left-5 z-50 flex items-center gap-3 rounded-full border border-rose/60 bg-wine/85 px-4 py-2.5 text-ivory shadow-lg backdrop-blur transition hover:bg-wine"
+      className="fixed bottom-5 left-5 z-50 flex items-center gap-3 rounded-full border border-rose/70 bg-wine/90 px-4 py-2.5 text-ivory shadow-lg backdrop-blur transition hover:bg-wine"
     >
       <span className="flex h-4 items-end gap-[3px]" aria-hidden>
         {[0, 1, 2, 3].map((i) => (

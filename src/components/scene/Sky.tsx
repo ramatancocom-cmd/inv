@@ -15,8 +15,8 @@ export function nightAmount(elapsed: number, reduceMotion: boolean) {
   return x * x * (3 - 2 * x);
 }
 
-const SKY_W = 20;
-const SKY_H = 12;
+const SKY_W = 40;
+const SKY_H = 26;
 const SKY_Y = 2.6;
 const SKY_Z = -5;
 
@@ -27,27 +27,25 @@ void main() {
   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }`;
 
-// Gradient sky that fades softly at its edges into the page's wine background.
+// Golden-hour sky that deepens to night, filling the arched window (screen-space gradient).
 const skyFrag = /* glsl */ `
 uniform float uNight;
 uniform vec2 uRes;
 varying vec2 vUv;
 void main() {
-  float y = vUv.y;
-  vec3 sLow = vec3(1.00, 0.74, 0.58);
-  vec3 sMid = vec3(0.86, 0.42, 0.42);
-  vec3 sTop = vec3(0.40, 0.07, 0.13);
-  vec3 nLow = vec3(0.36, 0.12, 0.20);
-  vec3 nMid = vec3(0.17, 0.05, 0.12);
-  vec3 nTop = vec3(0.07, 0.03, 0.08);
-  vec3 sun = mix(mix(sLow, sMid, smoothstep(0.18, 0.5, y)), sTop, smoothstep(0.45, 0.95, y));
-  vec3 night = mix(mix(nLow, nMid, smoothstep(0.18, 0.5, y)), nTop, smoothstep(0.45, 0.95, y));
-  vec3 col = mix(sun, night, uNight);
-  // Fade in screen space so the sky never shows the canvas's rectangular edge.
-  vec2 s = gl_FragCoord.xy / uRes;
-  vec2 c = (s - vec2(0.5, 0.55)) * vec2(1.0, 1.05);
-  float a = 1.0 - smoothstep(0.18, 0.5, length(c));
-  gl_FragColor = vec4(col, a * 0.92);
+  float y = (gl_FragCoord.xy / uRes).y;
+  vec3 sLow = vec3(0.98, 0.80, 0.48);
+  vec3 sMid = vec3(0.90, 0.60, 0.36);
+  vec3 sTop = vec3(0.42, 0.31, 0.40);
+  vec3 nLow = vec3(0.24, 0.19, 0.22);
+  vec3 nMid = vec3(0.11, 0.10, 0.17);
+  vec3 nTop = vec3(0.04, 0.05, 0.10);
+  vec3 sun = mix(mix(sLow, sMid, smoothstep(0.15, 0.5, y)), sTop, smoothstep(0.5, 1.0, y));
+  vec3 night = mix(mix(nLow, nMid, smoothstep(0.15, 0.5, y)), nTop, smoothstep(0.5, 1.0, y));
+  // a soft sun glow low on the horizon that sets as night falls
+  float glow = exp(-pow(length(vec2((gl_FragCoord.x / uRes.x - 0.5) * 1.6, y - 0.22)), 2.0) * 14.0);
+  vec3 col = mix(sun + vec3(0.12, 0.08, 0.02) * glow, night, uNight);
+  gl_FragColor = vec4(col, 1.0);
 }`;
 
 const starVert = /* glsl */ `
@@ -104,8 +102,8 @@ export default function Sky({ quality, reduceMotion }: { quality: "high" | "low"
     let s = 11;
     const r = () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
     for (let i = 0; i < n; i++) {
-      pos[i * 3] = (r() - 0.5) * SKY_W * 0.9;
-      pos[i * 3 + 1] = SKY_Y + (r() - 0.25) * SKY_H * 0.7;
+      pos[i * 3] = (r() - 0.5) * 18;
+      pos[i * 3 + 1] = SKY_Y + (r() - 0.25) * 8.4;
       pos[i * 3 + 2] = SKY_Z + 0.05;
       seed[i] = r();
     }

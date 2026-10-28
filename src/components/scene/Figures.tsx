@@ -18,8 +18,8 @@ function useLaceTexture() {
     const g = c.getContext("2d")!;
     g.fillStyle = "#FBF4E6";
     g.fillRect(0, 0, 256, 256);
-    g.strokeStyle = "rgba(150,70,75,0.35)";
-    g.fillStyle = "rgba(200,130,125,0.3)";
+    g.strokeStyle = "rgba(150,115,40,0.4)";
+    g.fillStyle = "rgba(201,162,39,0.3)";
     g.lineWidth = 1.2;
     for (let y = 0; y < 4; y++) {
       for (let x = 0; x < 4; x++) {

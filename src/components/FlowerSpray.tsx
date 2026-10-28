@@ -5,10 +5,10 @@ import { useId } from "react";
 type Corner = "tl" | "tr" | "bl" | "br";
 
 const PETAL_LIGHT = "#FFFDF8";
-const PETAL_MID = "#F5E5C9";
-const PETAL_DEEP = "#D4AF37";
-const LEAF = "#707E63";
-const LEAF_DARK = "#4D5844";
+const PETAL_MID = "#EFE0C2";
+const PETAL_DEEP = "#B8902A";
+const LEAF = "#CDAE5A"; // gold leaves
+const LEAF_DARK = "#9C7A22";
 
 /** Layered garden rose: outer cupped petals, inner swirl. */
 function Rose({ x, y, r, rot = 0, g }: { x: number; y: number; r: number; rot?: number; g: string }) {
@@ -26,7 +26,7 @@ function Rose({ x, y, r, rot = 0, g }: { x: number; y: number; r: number; rot?: 
             transform={`rotate(${a})`}
             fill={`url(#${g}-outer)`}
             stroke={PETAL_DEEP}
-            strokeOpacity={0.25}
+            strokeOpacity={0.55}
             strokeWidth={0.6}
           />
         );
@@ -43,7 +43,7 @@ function Rose({ x, y, r, rot = 0, g }: { x: number; y: number; r: number; rot?: 
             transform={`rotate(${a})`}
             fill={`url(#${g}-inner)`}
             stroke={PETAL_DEEP}
-            strokeOpacity={0.3}
+            strokeOpacity={0.6}
             strokeWidth={0.6}
           />
         );
@@ -114,7 +114,7 @@ export default function FlowerSpray({ corner, size = "md" }: { corner: Corner; s
   const w = size === "lg" ? "w-[46vw] max-w-[380px]" : size === "sm" ? "w-[30vw] max-w-[220px]" : "w-[38vw] max-w-[300px]";
   return (
     <div aria-hidden className={`pointer-events-none absolute ${place[corner]} ${w}`}>
-      <svg viewBox="0 0 300 300" className="flower-sway h-auto w-full drop-shadow-[0_6px_14px_rgba(74,13,24,0.25)]">
+      <svg viewBox="0 0 300 300" className="flower-sway h-auto w-full drop-shadow-[0_6px_14px_rgba(110,82,28,0.28)]">
         <defs>
           <radialGradient id={`${g}-outer`} cx="50%" cy="70%" r="70%">
             <stop offset="0%" stopColor={PETAL_LIGHT} />

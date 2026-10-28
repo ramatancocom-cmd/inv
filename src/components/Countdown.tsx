@@ -36,8 +36,8 @@ export default function Countdown() {
   if (remaining !== null && remaining <= 0) {
     return (
       <div className="text-center" role="status">
-        <p className="font-script text-5xl text-rose sm:text-7xl">{invitation.copy.celebrate}</p>
-        <p className="mt-4 text-xl italic text-ivory/90">{invitation.copy.celebrateSub}</p>
+        <p className="font-script text-5xl text-rose-deep sm:text-7xl">{invitation.copy.celebrate}</p>
+        <p className="mt-4 text-xl italic text-wine/80">{invitation.copy.celebrateSub}</p>
       </div>
     );
   }
@@ -56,10 +56,10 @@ export default function Countdown() {
       >
         {units.map((u) => (
           <div key={u.key} className="px-1 sm:px-6">
-            <dd className="font-serif text-4xl font-medium tabular-nums text-ivory sm:text-7xl">
+            <dd className="font-serif text-4xl font-medium tabular-nums text-wine sm:text-7xl">
               {parts ? String(parts[u.key]).padStart(2, "0") : "--"}
             </dd>
-            <dt className="eyebrow mt-3 text-[0.6rem] text-rose sm:text-xs">{u.label}</dt>
+            <dt className="eyebrow mt-3 text-[0.58rem] tracking-[0.12em] text-rose-deep sm:text-xs sm:tracking-[0.34em]">{u.label}</dt>
           </div>
         ))}
       </dl>

@@ -52,7 +52,7 @@ export default function PhotoStory() {
       aria-labelledby="story-title"
       style={{
         backgroundImage:
-          "radial-gradient(ellipse 60% 50% at 50% 55%, rgba(255,246,240,0.8), transparent 70%)",
+          "radial-gradient(ellipse 60% 50% at 50% 55%, rgba(255,252,244,0.85), transparent 70%)",
       }}
     >
       <div className="lace pointer-events-none absolute inset-0 opacity-70" aria-hidden />
@@ -67,7 +67,7 @@ export default function PhotoStory() {
         </p>
         <div className="mt-4 flex items-center justify-center gap-3" aria-hidden>
           <span className="rose-rule w-20" />
-          <svg width="18" height="16" viewBox="0 0 24 22" fill="none" stroke="#7A1424" strokeWidth="1.4">
+          <svg width="18" height="16" viewBox="0 0 24 22" fill="none" stroke="#7D5F12" strokeWidth="1.4">
             <path d="M12 20s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 5.8-8 11-8 11z" />
           </svg>
           <span className="rose-rule w-20" />

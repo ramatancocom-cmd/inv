@@ -46,7 +46,7 @@ export default function WishesWall() {
 
   return (
     <section
-      className="relative overflow-hidden bg-ivory px-6 py-24 sm:py-28"
+      className="relative overflow-hidden bg-blush px-6 py-24 sm:py-28"
       aria-labelledby="wishes-title"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}

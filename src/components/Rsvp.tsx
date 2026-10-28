@@ -62,7 +62,7 @@ export default function Rsvp() {
   return (
     <section
       id="rsvp"
-      className="relative overflow-hidden bg-blush px-5 py-24 sm:py-32"
+      className="relative overflow-hidden bg-ivory px-5 py-24 sm:py-32"
       aria-labelledby="rsvp-title"
     >
       <div className="lace pointer-events-none absolute inset-0 opacity-70" aria-hidden />
@@ -77,7 +77,7 @@ export default function Rsvp() {
           <Flourish className="mx-auto mt-4 text-wine-soft" />
         </div>
 
-        <div className="relative mt-12 border border-wine-soft/40 bg-ivory/80 p-1.5 shadow-[0_30px_60px_-30px_rgba(74,13,24,0.45)] backdrop-blur-sm">
+        <div className="relative mt-12 border border-wine-soft/40 bg-blush/70 p-1.5 shadow-[0_30px_60px_-30px_rgba(90,64,20,0.4)] backdrop-blur-sm">
           <div className="border border-wine-soft/25 px-6 py-10 sm:px-12 sm:py-12">
             <AnimatePresence mode="wait">
               {status === "saved" ? (
@@ -92,7 +92,7 @@ export default function Rsvp() {
                   <motion.svg width="64" height="58" viewBox="0 0 24 22" fill="none" className="mx-auto" aria-hidden>
                     <motion.path
                       d="M12 20s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 5.8-8 11-8 11z"
-                      stroke="#7A1424"
+                      stroke="#7D5F12"
                       strokeWidth="1.2"
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
@@ -199,7 +199,7 @@ export default function Rsvp() {
                       type="checkbox"
                       checked={showOnWall}
                       onChange={(e) => setShowOnWall(e.target.checked)}
-                      className="mt-1 h-4 w-4 shrink-0 accent-[#7A1424]"
+                      className="mt-1 h-4 w-4 shrink-0 accent-[#7D5F12]"
                     />
                     <span>Share my note on the wishes wall, with my name, after the couple approves it.</span>
                   </label>

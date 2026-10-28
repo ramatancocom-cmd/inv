@@ -36,7 +36,7 @@ export default function Cursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[200] rounded-full border border-rose mix-blend-difference"
+      className="pointer-events-none fixed left-0 top-0 z-[200] rounded-full border border-rose-deep"
       style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%" }}
       animate={{ width: hover ? 48 : 22, height: hover ? 48 : 22, opacity: hover ? 0.9 : 0.6 }}
       transition={{ duration: 0.25 }}

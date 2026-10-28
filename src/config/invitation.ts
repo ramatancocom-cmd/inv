@@ -46,13 +46,19 @@ export const invitation = {
     caption: "Together, forever.",
   },
 
+  // Ivory & gold. Role names are kept from earlier themes so classes stay stable:
+  //   wine     = deep espresso brown (main text, dark buttons)
+  //   wineSoft = bronze (script headings)
+  //   blush    = champagne cream (alternate section background)
+  //   rose     = gold (lines, ornaments, metal in the 3D scene)
+  //   roseDeep = antique gold for text on light backgrounds (AA contrast)
   palette: {
-    wine: "#4A0D18",
-    wineSoft: "#7A1424",
+    wine: "#3A2A1A",
+    wineSoft: "#6E521C",
     blush: "#F5EDE0",
     blushDeep: "#E8DCB8",
-    rose: "#D4AF37",
-    roseDeep: "#997517", // deep antique gold for text on light backgrounds (AA contrast)
+    rose: "#C9A227",
+    roseDeep: "#7D5F12",
     ivory: "#FDFBF7",
     suit: "#1C1719", // groom tuxedo in the 3D scene
     gold: "#D4AF37",

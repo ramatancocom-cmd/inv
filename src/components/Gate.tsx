@@ -6,6 +6,7 @@ import { invitation } from "@/config/invitation";
 import MusicButton from "./MusicButton";
 import Cursor from "./Cursor";
 import FlowerSpray from "./FlowerSpray";
+import { markInvitationOpened } from "./scene/time";
 
 type Phase = "closed" | "opening" | "open";
 
@@ -41,7 +42,10 @@ export default function Gate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // The overlay is fixed and covers the page; always reveal the invitation from the top.
-    if (phase === "open") window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    if (phase === "open") {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+      markInvitationOpened();
+    }
   }, [phase]);
 
   const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
@@ -116,13 +120,13 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                 {/* shadow */}
                 <div
                   aria-hidden
-                  className="absolute -bottom-8 left-[6%] right-[6%] h-8 rounded-[50%] bg-wine/30 blur-xl"
+                  className="absolute -bottom-8 left-[6%] right-[6%] h-8 rounded-[50%] bg-wine/20 blur-xl"
                 />
                 {/* back of envelope */}
                 <div
                   aria-hidden
                   className="absolute inset-0 border border-rose/70"
-                  style={{ background: "#33070F", zIndex: 0 }}
+                  style={{ background: "#E9DFC9", zIndex: 0 }}
                 />
 
                 {/* invitation card */}
@@ -159,9 +163,9 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   className="absolute inset-0 h-full w-full"
                   style={{ zIndex: 2 }}
                 >
-                  <polygon points="0,0 300,232 0,400" fill="#6A1222" stroke={palette.rose} strokeWidth="1.5" />
-                  <polygon points="600,0 300,232 600,400" fill="#6A1222" stroke={palette.rose} strokeWidth="1.5" />
-                  <polygon points="0,400 300,205 600,400" fill={palette.wine} stroke={palette.rose} strokeWidth="1.5" />
+                  <polygon points="0,0 300,232 0,400" fill="#F6EFE0" stroke={palette.rose} strokeWidth="1.5" />
+                  <polygon points="600,0 300,232 600,400" fill="#F6EFE0" stroke={palette.rose} strokeWidth="1.5" />
+                  <polygon points="0,400 300,205 600,400" fill="#F1E8D5" stroke={palette.rose} strokeWidth="1.5" />
                   <rect x="1" y="1" width="598" height="398" fill="none" stroke={palette.rose} strokeWidth="2" />
                 </svg>
 
@@ -179,7 +183,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   <svg aria-hidden viewBox="0 0 600 232" preserveAspectRatio="none" className="h-full w-full">
                     <polygon
                       points="0,0 600,0 300,230"
-                      fill={flapBehind ? "#3D0A13" : palette.wine}
+                      fill={flapBehind ? "#E6DAC1" : "#FBF7EE"}
                       stroke={palette.rose}
                       strokeWidth="2"
                       strokeLinejoin="round"
@@ -194,12 +198,12 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   onClick={open}
                   disabled={opening}
                   aria-label="Open invitation"
-                  className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-rose"
+                  className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-wine"
                   style={{
                     zIndex: 5,
                     background:
-                      "radial-gradient(circle at 35% 30%, #B0344A 0%, #7A1424 55%, #4A0D18 100%)",
-                    boxShadow: "0 6px 16px rgba(0,0,0,.45), inset 0 0 0 3px rgba(255,255,255,.12), inset 0 -4px 8px rgba(0,0,0,.25)",
+                      "radial-gradient(circle at 35% 30%, #F5E296 0%, #D4AF37 50%, #8A6416 100%)",
+                    boxShadow: "0 6px 16px rgba(90,64,20,.4), inset 0 0 0 3px rgba(255,255,255,.25), inset 0 -4px 8px rgba(90,60,10,.35)",
                   }}
                   animate={
                     opening
@@ -214,7 +218,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                       : { duration: 3.2, repeat: reduce ? 0 : Infinity, ease: "easeInOut" }
                   }
                 >
-                  <span className="absolute inset-[7px] rounded-full border border-rose/50" aria-hidden />
+                  <span className="absolute inset-[7px] rounded-full border border-wine/30" aria-hidden />
                   <span className="font-script text-xl leading-none sm:text-3xl" aria-hidden>
                     M&amp;R
                   </span>

@@ -37,7 +37,7 @@ function Fallback({ note }: { note: string }) {
       >
         <Monogram size={120} />
       </div>
-      <p className="text-sm italic text-ivory/70">{note}</p>
+      <p className="text-sm italic text-ivory/80">{note}</p>
     </div>
   );
 }
@@ -104,11 +104,11 @@ export default function SceneHost() {
           {!reduce && (
             <p
               aria-hidden
-              className={`pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.65rem] uppercase tracking-[0.28em] text-ivory/80 [text-shadow:0_1px_8px_rgba(40,5,12,0.95)] transition-opacity duration-700 ${
+              className={`pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap text-[0.6rem] uppercase tracking-[0.2em] sm:text-[0.65rem] sm:tracking-[0.28em] text-ivory/80 [text-shadow:0_1px_8px_rgba(30,20,10,0.9)] transition-opacity duration-700 ${
                 hinted ? "opacity-0" : "opacity-100"
               }`}
             >
-              {fine ? "Click the couple to twirl" : "Tap the couple to twirl"} &middot; drag to turn
+              {fine ? "Click" : "Tap"} to twirl &middot; drag to turn
             </p>
           )}
         </Boundary>
