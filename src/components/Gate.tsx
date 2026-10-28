@@ -80,7 +80,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
             aria-label="Opening the invitation"
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4"
             style={{
-              background: `radial-gradient(ellipse at 50% 35%, #FBEDE8 0%, ${palette.blush} 55%, ${palette.blushDeep} 100%)`,
+              background: `radial-gradient(ellipse at 50% 35%, #FDFBF7 0%, ${palette.blush} 55%, ${palette.blushDeep} 100%)`,
             }}
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: reduce ? 0.2 : 1.1, ease: "easeInOut" } }}
@@ -194,7 +194,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   onClick={open}
                   disabled={opening}
                   aria-label="Open invitation"
-                  className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-blush"
+                  className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-rose"
                   style={{
                     zIndex: 5,
                     background:
@@ -214,7 +214,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                       : { duration: 3.2, repeat: reduce ? 0 : Infinity, ease: "easeInOut" }
                   }
                 >
-                  <span className="absolute inset-[7px] rounded-full border border-blush/40" aria-hidden />
+                  <span className="absolute inset-[7px] rounded-full border border-rose/50" aria-hidden />
                   <span className="font-script text-xl leading-none sm:text-3xl" aria-hidden>
                     M&amp;R
                   </span>

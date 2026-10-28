@@ -49,12 +49,15 @@ export const invitation = {
   palette: {
     wine: "#4A0D18",
     wineSoft: "#7A1424",
-    blush: "#F0D2CA",
-    blushDeep: "#E4B9AE",
-    rose: "#E3A99B",
-    roseDeep: "#7A1424", // wine for text on light backgrounds (AA contrast)
-    ivory: "#FBF3EC",
+    blush: "#F5EDE0",
+    blushDeep: "#E8DCB8",
+    rose: "#D4AF37",
+    roseDeep: "#997517", // deep antique gold for text on light backgrounds (AA contrast)
+    ivory: "#FDFBF7",
     suit: "#1C1719", // groom tuxedo in the 3D scene
+    gold: "#D4AF37",
+    goldLight: "#F5E296",
+    goldDark: "#997517",
   },
 
   features: {

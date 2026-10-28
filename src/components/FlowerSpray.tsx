@@ -4,11 +4,11 @@ import { useId } from "react";
 
 type Corner = "tl" | "tr" | "bl" | "br";
 
-const PETAL_LIGHT = "#F9D3DB";
-const PETAL_MID = "#EFA3B4";
-const PETAL_DEEP = "#D9748C";
-const LEAF = "#8FA07E";
-const LEAF_DARK = "#6E8160";
+const PETAL_LIGHT = "#FFFDF8";
+const PETAL_MID = "#F5E5C9";
+const PETAL_DEEP = "#D4AF37";
+const LEAF = "#707E63";
+const LEAF_DARK = "#4D5844";
 
 /** Layered garden rose: outer cupped petals, inner swirl. */
 function Rose({ x, y, r, rot = 0, g }: { x: number; y: number; r: number; rot?: number; g: string }) {
@@ -68,7 +68,7 @@ function Blossom({ x, y, r, rot = 0 }: { x: number; y: number; r: number; rot?: 
       {Array.from({ length: 5 }).map((_, i) => (
         <ellipse key={i} cx={0} cy={-r * 0.55} rx={r * 0.42} ry={r * 0.55} transform={`rotate(${i * 72})`} fill={PETAL_LIGHT} stroke={PETAL_MID} strokeWidth={0.6} />
       ))}
-      <circle r={r * 0.22} fill="#E9B872" />
+      <circle r={r * 0.22} fill="#D4AF37" />
     </g>
   );
 }
@@ -121,7 +121,7 @@ export default function FlowerSpray({ corner, size = "md" }: { corner: Corner; s
             <stop offset="100%" stopColor={PETAL_MID} />
           </radialGradient>
           <radialGradient id={`${g}-inner`} cx="50%" cy="80%" r="80%">
-            <stop offset="0%" stopColor="#FBE3E8" />
+            <stop offset="0%" stopColor="#FDF4E3" />
             <stop offset="100%" stopColor={PETAL_MID} />
           </radialGradient>
           <radialGradient id={`${g}-heart`} cx="45%" cy="40%" r="60%">

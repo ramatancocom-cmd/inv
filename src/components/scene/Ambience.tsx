@@ -36,7 +36,7 @@ function Petals({ count, still }: { count: number; still: boolean }) {
 
   useLayoutEffect(() => {
     const m = ref.current!;
-    const colors = [new THREE.Color(palette.blush), new THREE.Color("#F7E3DC"), new THREE.Color("#D98A8F")];
+    const colors = [new THREE.Color(palette.blush), new THREE.Color("#FDF6E2"), new THREE.Color(palette.rose)];
     petals.forEach((_, i) => m.setColorAt(i, colors[i % 3]));
     m.instanceColor!.needsUpdate = true;
   }, [petals]);

@@ -31,7 +31,7 @@ export default function Page() {
           className="relative overflow-hidden bg-wine text-ivory"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 55% at 70% 55%, rgba(227,169,155,0.20), transparent 70%), radial-gradient(ellipse 80% 60% at 20% 0%, rgba(122,20,36,0.9), transparent 70%)",
+              "radial-gradient(ellipse 60% 55% at 70% 55%, rgba(212,175,55,0.22), transparent 70%), radial-gradient(ellipse 80% 60% at 20% 0%, rgba(122,20,36,0.9), transparent 70%)",
           }}
         >
           <div className="lace pointer-events-none absolute inset-0 opacity-60" aria-hidden />
@@ -130,7 +130,7 @@ export default function Page() {
                 className="relative overflow-hidden bg-wine px-8 py-16 text-center text-ivory sm:px-16 sm:py-20"
                 style={{
                   backgroundImage:
-                    "radial-gradient(ellipse 70% 80% at 50% 0%, rgba(227,169,155,0.22), transparent 70%)",
+                    "radial-gradient(ellipse 70% 80% at 50% 0%, rgba(212,175,55,0.25), transparent 70%)",
                 }}
               >
                 <div className="lace pointer-events-none absolute inset-0 opacity-70" aria-hidden />
