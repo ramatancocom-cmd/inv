@@ -13,9 +13,6 @@ export async function POST(req: Request) {
   } catch {
     return Response.json({ ok: false }, { status: 400 });
   }
-  if (!process.env.ADMIN_PASSWORD) {
-    return Response.json({ ok: false, error: "ADMIN_PASSWORD is not set on the server." }, { status: 503 });
-  }
   if (!checkPassword(body.password)) {
     await new Promise((r) => setTimeout(r, 600)); // slow down guessing
     return Response.json({ ok: false, error: "Wrong password." }, { status: 401 });

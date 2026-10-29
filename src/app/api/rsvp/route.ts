@@ -1,13 +1,11 @@
-import { appendFile, mkdir } from "node:fs/promises";
-import path from "node:path";
 import nodemailer from "nodemailer";
 import { invitation } from "@/config/invitation";
 import { addWish, wishToken, type Wish } from "@/lib/wishes";
+import { addRsvp } from "@/lib/rsvps";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const FILE = path.join(process.cwd(), "data", "rsvps.txt");
 const MAX_GUESTS = invitation.features.rsvp.maxGuests;
 
 // Simple in-memory rate limit: 5 submissions per IP per 10 minutes.
@@ -81,13 +79,9 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, error: `Number of guests must be 1 to ${MAX_GUESTS}.` }, { status: 400 });
 
   const at = new Date().toLocaleString("en-GB", { timeZone: invitation.event.timeZone }) + " (Cairo)";
-  const line =
-    [at, name, attending === "yes" ? "ATTENDING" : "DECLINED", `guests=${guests}`, message.replace(/\s+/g, " ")]
-      .join(" | ") + "\n";
 
   try {
-    await mkdir(path.dirname(FILE), { recursive: true });
-    await appendFile(FILE, line, "utf8");
+    await addRsvp({ name, attending, guests, message, at, ip });
   } catch (e) {
     console.error("RSVP save failed", e);
     return Response.json({ ok: false, error: "We could not save your reply. Please try again." }, { status: 500 });

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import AdminWishes from "@/components/AdminWishes";
+import AdminDashboard from "@/components/AdminDashboard";
 
 export const metadata: Metadata = {
-  title: "Wishes | Private",
+  title: "Admin Dashboard | Mohamed & Rawan",
   robots: { index: false, follow: false },
 };
 
 export default function AdminPage() {
-  return <AdminWishes />;
+  return <AdminDashboard />;
 }

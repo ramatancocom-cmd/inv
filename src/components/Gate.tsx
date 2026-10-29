@@ -17,6 +17,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState<Phase>("closed");
   const [flapBehind, setFlapBehind] = useState(false);
+  const [cardInFront, setCardInFront] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const timers = useRef<number[]>([]);
@@ -54,11 +55,12 @@ export default function Gate({ children }: { children: React.ReactNode }) {
     if (phase !== "closed") return;
     setPhase("opening");
     if (reduce) {
-      later(() => setPhase("open"), 250);
+      later(() => setPhase("open"), 200);
       return;
     }
-    later(() => setFlapBehind(true), 700);
-    later(() => setPhase("open"), 3300);
+    later(() => setFlapBehind(true), 320);
+    later(() => setCardInFront(true), 600);
+    later(() => setPhase("open"), 2800);
   };
 
   const skip = () => {
@@ -114,7 +116,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                   opacity: 1,
                   scale: 1,
                 }}
-                transition={{ duration: 1.1 * d + 0.01, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.75 * d + 0.01, ease: [0.22, 1, 0.36, 1] }}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* shadow */}
@@ -131,28 +133,31 @@ export default function Gate({ children }: { children: React.ReactNode }) {
 
                 {/* invitation card */}
                 <motion.div
-                  className="absolute left-[6%] right-[6%] top-[6%] bottom-[6%] flex flex-col items-center justify-center border border-rose bg-ivory px-4 text-center text-wine shadow-xl"
-                  style={{ zIndex: 1 }}
+                  className="absolute left-[5%] right-[5%] top-[5%] bottom-[5%] flex flex-col items-center justify-center border border-rose bg-ivory px-5 py-4 text-center text-wine shadow-2xl"
+                  style={{ zIndex: cardInFront ? 5 : 1 }}
                   animate={{
-                    y: opening && !reduce ? "-38%" : 0,
+                    y: opening && !reduce ? "-68%" : 0,
                     scale: 1,
                   }}
                   transition={{
-                    delay: opening && !reduce ? 1.05 : 0,
-                    duration: 1.4 * d + 0.01,
+                    delay: opening && !reduce ? 0.38 : 0,
+                    duration: 0.75 * d + 0.01,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <div className="absolute inset-1.5 border border-rose/50" aria-hidden />
-                  <p className="text-[0.62rem] uppercase tracking-[0.3em] sm:text-xs">
+                  <div className="absolute inset-1.5 border border-rose/60 sm:inset-2" aria-hidden />
+                  <p className="text-[0.62rem] uppercase tracking-[0.3em] text-wine/75 sm:text-xs">
                     {copy.intro}
                   </p>
                   <p className="mt-2 font-script text-3xl text-wine sm:text-5xl">
-                    {couple.first} &amp; {couple.second}
+                    <span className="foil">{couple.first} &amp; {couple.second}</span>
                   </p>
                   <div className="rose-rule my-2 w-24 sm:my-3" aria-hidden />
-                  <p className="text-[0.62rem] uppercase tracking-[0.3em] text-rose-deep sm:text-xs">
+                  <p className="text-[0.68rem] font-medium uppercase tracking-[0.26em] text-rose-deep sm:text-xs">
                     {invitation.event.title}
+                  </p>
+                  <p className="mt-2 text-xs italic text-wine/80 sm:text-sm">
+                    {invitation.event.dateLabel}
                   </p>
                 </motion.div>
 
@@ -178,7 +183,7 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                     transformStyle: "preserve-3d",
                   }}
                   animate={{ rotateX: opening && !reduce ? 180 : 0 }}
-                  transition={{ delay: opening && !reduce ? 0.55 : 0, duration: 1 * d + 0.01, ease: [0.45, 0, 0.2, 1] }}
+                  transition={{ delay: opening && !reduce ? 0.08 : 0, duration: 0.42 * d + 0.01, ease: [0.45, 0, 0.2, 1] }}
                 >
                   <svg aria-hidden viewBox="0 0 600 232" preserveAspectRatio="none" className="h-full w-full">
                     <polygon
@@ -192,38 +197,42 @@ export default function Gate({ children }: { children: React.ReactNode }) {
                 </motion.div>
 
                 {/* wax seal / open button */}
-                <motion.button
-                  ref={buttonRef}
-                  type="button"
-                  onClick={open}
-                  disabled={opening}
-                  aria-label="Open invitation"
-                  className="absolute left-1/2 top-[58%] grid h-[18%] min-h-[64px] aspect-square -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-wine"
-                  style={{
-                    zIndex: 5,
-                    pointerEvents: opening ? "none" : "auto",
-                    background:
-                      "radial-gradient(circle at 35% 30%, #F5E296 0%, #D4AF37 50%, #8A6416 100%)",
-                    boxShadow: "0 6px 16px rgba(90,64,20,.4), inset 0 0 0 3px rgba(255,255,255,.25), inset 0 -4px 8px rgba(90,60,10,.35)",
-                  }}
-                  animate={
-                    opening
-                      ? reduce
-                        ? { opacity: 0 }
-                        : { y: 46, rotate: -18, scale: 0.6, opacity: 0 }
-                      : { scale: [1, 1.05, 1] }
-                  }
-                  transition={
-                    opening
-                      ? { duration: 0.55, ease: "easeIn" }
-                      : { duration: 3.2, repeat: reduce ? 0 : Infinity, ease: "easeInOut" }
-                  }
+                <div
+                  className="pointer-events-none absolute left-1/2 top-1/2"
+                  style={{ zIndex: 5, transform: "translate(-50%, -50%)" }}
                 >
-                  <span className="absolute inset-[7px] rounded-full border border-wine/30" aria-hidden />
-                  <span className="font-script text-xl leading-none sm:text-3xl" aria-hidden>
-                    M&amp;R
-                  </span>
-                </motion.button>
+                  <motion.button
+                    ref={buttonRef}
+                    type="button"
+                    onClick={open}
+                    disabled={opening}
+                    aria-label="Open invitation"
+                    className="pointer-events-auto relative grid h-16 w-16 place-items-center rounded-full text-wine sm:h-20 sm:w-20"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 35% 30%, #F5E296 0%, #D4AF37 50%, #8A6416 100%)",
+                      boxShadow:
+                        "0 6px 18px rgba(90,64,20,.45), inset 0 0 0 3px rgba(255,255,255,.25), inset 0 -4px 8px rgba(90,60,10,.35)",
+                    }}
+                    animate={
+                      opening
+                        ? reduce
+                          ? { opacity: 0 }
+                          : { y: 24, rotate: -12, scale: 0.4, opacity: 0 }
+                        : { scale: [1, 1.05, 1] }
+                    }
+                    transition={
+                      opening
+                        ? { duration: 0.22, ease: "easeIn" }
+                        : { duration: 3.2, repeat: reduce ? 0 : Infinity, ease: "easeInOut" }
+                    }
+                  >
+                    <span className="absolute inset-[6px] rounded-full border border-wine/30 sm:inset-[7px]" aria-hidden />
+                    <span className="font-script text-xl leading-none sm:text-2xl" aria-hidden>
+                      M&amp;R
+                    </span>
+                  </motion.button>
+                </div>
               </motion.div>
             </div>
 

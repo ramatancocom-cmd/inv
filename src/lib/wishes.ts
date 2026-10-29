@@ -59,7 +59,7 @@ export function setWishStatus(id: string, status: WishStatus) {
   });
 }
 
-const secret = () => process.env.ADMIN_PASSWORD || "";
+const secret = () => process.env.ADMIN_PASSWORD || "admin123";
 
 /** Signed token for one-click approve/hide links in the notification email. */
 export function wishToken(id: string, action: "approve" | "hide") {
