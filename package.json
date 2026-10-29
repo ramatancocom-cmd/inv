@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "package:cpanel": "node scripts/prepare-cpanel.mjs"
+    "package:cpanel": "node scripts/bundle-cpanel.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",
